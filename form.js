@@ -30,7 +30,7 @@ class NameForm extends React.Component {
         <input type="submit" value="Submit" />
       </form>
       
-      <div class = "graphBox">
+      <div class = "graph">
       
       </div>
     );
