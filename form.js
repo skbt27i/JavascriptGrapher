@@ -5,7 +5,7 @@ class NameForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} onclick="getData()" />
         <label>
           Data point 1:
           <input type="text"  />
