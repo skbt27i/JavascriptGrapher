@@ -17,4 +17,5 @@ class App extends React.Component {
 
 
 	}
+getData();
 }
