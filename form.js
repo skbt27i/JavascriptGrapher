@@ -2,7 +2,7 @@
 
 
 class NameForm extends React.Component {
-   getData()
+   getData=()=>
 	{
 		var data1=document.getElementById('data1').value;
 		var data2=document.getElementById('data2').value;
