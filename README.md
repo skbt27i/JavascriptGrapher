@@ -5,3 +5,4 @@ The idea is to grab data with some sort of front end, process it using Javascrip
 
 
 React UI?
+Use Node.js to talk to Python processing?
