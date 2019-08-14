@@ -35,12 +35,11 @@ class NameForm extends React.Component {
           <input type="text"  />
         </label>
  
-        <input type="submit" value="Submit" />
       </form>
+	    <button onclick=onclick={this.getData}>Submit</button>
+
       
-      <div class = "graph">
-      
-      </div>
+ 
     );
   }
 }
