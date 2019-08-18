@@ -9,8 +9,9 @@ Use Node.js to talk to Python processing?
 
 
 To run in Node (not yet finalized):
+
+
 ---
-npm install -g serve
-serve -s build
+npm install -g serve serve -s build
 ---
  Go to localhost:5000
