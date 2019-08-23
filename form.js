@@ -4,16 +4,20 @@
 class NameForm extends React.Component {
    getData=()=>
 	{
-		var xdata1=document.getElementById('data1').value;
-		var xdata2=document.getElementById('data2').value;
-		var xdata3=document.getElementById('data3').value;
-	        var xdata4=document.getElementById('data4').value;
+		var xdata1=Number(document.getElementById('xValue1').textContent);
+		var xdata2=Number(document.getElementById('xValue2').textContent);
+		var xdata3=Number(document.getElementById('xValue3').textContent);
+	        var xdata4=Number(document.getElementById('xValue4').textContent);
+	   	var xdata5=Number(document.getElementById('xValue5').textContent);
+
 	   
 	   
-	        var ydata1=document.getElementById('data1').value;
-		var ydata2=document.getElementById('data2').value;
-		var ydata3=document.getElementById('data3').value;
-	        var ydata4=document.getElementById('data4').value;
+	        var ydata1=Number(document.getElementById('yValue1').textContent);
+		var ydata2=Number(document.getElementById('yValue2').textContent);
+		var ydata3=Number(document.getElementById('yValue3').textContent);
+	        var ydata4=Number(document.getElementById('yValue4').textContent);
+	   	var ydata5=Number(document.getElementById('yValue5').textContent);
+
 	}
    
    //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
@@ -31,17 +35,17 @@ class NameForm extends React.Component {
             });
 
             function addDataPointsAndRender() {
-                x1Value = Number(document.getElementById("xValue").value);
-                x2Value = Number(document.getElementById("yValue").value);
-		x3Value = Number(document.getElementById("xValue").value);
-                x4Value = Number(document.getElementById("yValue").value);
-		x5Value = Number(document.getElementById("yValue").value);
+                x1Value = Number(document.getElementById("xValue1").textContent);
+                x2Value = Number(document.getElementById("xValue2").textContent);
+		x3Value = Number(document.getElementById("xValue3").textContent);
+                x4Value = Number(document.getElementById("xValue4").textContent);
+		x5Value = Number(document.getElementById("xValue5").textContent);
 		    
-		y1Value = Number(document.getElementById("xValue").value);
-                y2Value = Number(document.getElementById("yValue").value);
-		y3Value = Number(document.getElementById("xValue").value);
-                y4Value = Number(document.getElementById("yValue").value);
-		y5Value = Number(document.getElementById("yValue").value);
+		y1Value = Number(document.getElementById("yValue1").textContent);
+                y2Value = Number(document.getElementById("yValue2").textContent);
+		y3Value = Number(document.getElementById("yValue3").textContent);
+                y4Value = Number(document.getElementById("yValue4").textContent);
+		y5Value = Number(document.getElementById("yValue5").textContent);
 
                 dps1.push({
                     x1: xValue,
@@ -75,43 +79,43 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit} />
         <label>
           X Data point 1:
-          <input type="text"  />
+          <input type="text" id="xValue1"  />
         </label>
 	  <label>
           Y Data point 1:
-          <input type="text"  />
+          <input type="text" id="yValue1" />
         </label>
       <label>
           X Data point 2:
-          <input type="text"  />
+          <input type="text" id="xValue2"  />
         </label>
       <label>
           Y Data point 2:
-          <input type="text"  />
+          <input type="text" id="yValue2" />
         </label>
       <label>
           X Data point 3:
-          <input type="text"  />
+          <input type="text" id="xValue3" />
         </label>
      <label>
           Y Data point 3:
-          <input type="text"  />
+          <input type="text" id="yValue3" />
         </label>
       <label>
           X Data point 4:
-          <input type="text"  />
+          <input type="text" id="xValue4" />
         </label>
 	<label>
           Y Data point 4:
-          <input type="text"  />
+          <input type="text" id="yValue4" />
         </label>
       <label>
           X Data point 5:
-          <input type="text"  />
+          <input type="text" id="xValue5" />
         </label>
 	<label>
           Y Data point 5:
-          <input type="text"  />
+          <input type="text"  id="yValue5"/>
         </label>
  
       </form>
