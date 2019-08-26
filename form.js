@@ -123,6 +123,13 @@ class NameForm extends React.Component {
       
  
     );
+	  
+	  return
+     (   <div>
+        <CanvasJSChart chart= {chart}
+        />
+      </div
+     );
   }
 }
 
@@ -131,10 +138,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-return
-(
-	<div>
-        <CanvasJSChart chart= {chart}
-        />
-      </div
-);
+
