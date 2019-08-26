@@ -20,59 +20,7 @@ class NameForm extends React.Component {
 
 	}
    
-   //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
-        window.onload = function() {
-            var dps = []; 
 
-            var chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: "Linear Regression"
-                },
-                data: [{
-                    type: "line",
-                    dataPoints: dps1, dps2, dps3, dps4, dps5
-                }]
-            });
-
-            function addDataPointsAndRender() {
-                x1Value = Number(document.getElementById("xValue1").textContent);
-                x2Value = Number(document.getElementById("xValue2").textContent);
-		x3Value = Number(document.getElementById("xValue3").textContent);
-                x4Value = Number(document.getElementById("xValue4").textContent);
-		x5Value = Number(document.getElementById("xValue5").textContent);
-		    
-		y1Value = Number(document.getElementById("yValue1").textContent);
-                y2Value = Number(document.getElementById("yValue2").textContent);
-		y3Value = Number(document.getElementById("yValue3").textContent);
-                y4Value = Number(document.getElementById("yValue4").textContent);
-		y5Value = Number(document.getElementById("yValue5").textContent);
-
-                dps1.push({
-                    x1: xValue,
-                    y1: yValue
-                });
-		    dps2.push({
-                    x2: xValue,
-                    y2: yValue
-                });
-		    dps3.push({
-                    x3: xValue,
-                    y3: yValue
-                });
-		    dps4.push({
-                    x4: xValue,
-                    y4: yValue
-                });
-		    dps5.push({
-                    x5: xValue,
-                    y5: yValue
-                });
-                chart.render();
-            }
-
-            var renderButton = document.getElementById("renderButton");
-            renderButton.addEventListener("click", addDataPointsAndRender);
-        }
 
   render() {
     return (
@@ -120,7 +68,58 @@ class NameForm extends React.Component {
  
       </form>
 	    <button onclick={this.getData} var="renderButton">Submit</button>
+          var dps = []; 
 
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Linear Regression"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: dps1, dps2, dps3, dps4, dps5
+                }]
+            });
+
+	     //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
+
+            function addDataPointsAndRender() {
+                x1Value = Number(document.getElementById("xValue1").textContent);
+                x2Value = Number(document.getElementById("xValue2").textContent);
+		x3Value = Number(document.getElementById("xValue3").textContent);
+                x4Value = Number(document.getElementById("xValue4").textContent);
+		x5Value = Number(document.getElementById("xValue5").textContent);
+		    
+		y1Value = Number(document.getElementById("yValue1").textContent);
+                y2Value = Number(document.getElementById("yValue2").textContent);
+		y3Value = Number(document.getElementById("yValue3").textContent);
+                y4Value = Number(document.getElementById("yValue4").textContent);
+		y5Value = Number(document.getElementById("yValue5").textContent);
+
+                dps1.push({
+                    x1: xValue,
+                    y1: yValue
+                });
+		    dps2.push({
+                    x2: xValue,
+                    y2: yValue
+                });
+		    dps3.push({
+                    x3: xValue,
+                    y3: yValue
+                });
+		    dps4.push({
+                    x4: xValue,
+                    y4: yValue
+                });
+		    dps5.push({
+                    x5: xValue,
+                    y5: yValue
+                });
+                chart.render();
+            }
+
+            var renderButton = document.getElementById("renderButton");
+            renderButton.addEventListener("click", addDataPointsAndRender);
       
  
     );
@@ -130,4 +129,12 @@ class NameForm extends React.Component {
 ReactDOM.render(
   <NameForm />,
   document.getElementById('root')
+);
+
+return
+(
+	<div>
+        <CanvasJSChart chart= {chart}
+        />
+      </div
 );
