@@ -7,13 +7,12 @@ The idea is to grab data with some sort of front end, process it using Javascrip
 React UI?
 Use Node.js to talk to Python processing?
 
- To run in Node (not yet finalized):
+ To run (eventually):
 
 
 ```
-npm install -g serve 
-serve -s build
+npm start
 ```
 
 
- Go to localhost:5000
+ Go to localhost:3000
