@@ -19,7 +19,22 @@ class NameForm extends React.Component {
 	   	var ydata5=Number(document.getElementById('yValue5').textContent);
 
 	}
-   
+   //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
+   componentDidMount() {
+    const data = new FormData();
+
+    fetch('http://localhost:3001/', {
+  method: 'POST',
+  body: data
+	})
+	.then((response) => {
+  finalString.json().then((rSquareString)=>this.setState({ finalString: finalString }))
+	} 
+.catch(
+  error => null 
+	))
+  }
+ 
 
 
   render() {
