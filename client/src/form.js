@@ -28,7 +28,7 @@ class NameForm extends React.Component {
   body: data
 	})
 	.then((response) => {
-  finalString.json().then((rSquareString)=>this.setState({ finalString: finalString }))
+  resultString.json().then((rSquareString)=>this.setState({ resultString: resultString }))
 	} 
 .catch(
   error => null 
