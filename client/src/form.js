@@ -1,5 +1,7 @@
 
+import React, {Component} from 'react';
 
+import axios from 'axios';
 
 class NameForm extends React.Component {
    getData=()=>
@@ -17,21 +19,21 @@ class NameForm extends React.Component {
 		var ydata3=Number(document.getElementById('yValue3').textContent);
 	        var ydata4=Number(document.getElementById('yValue4').textContent);
 	   	var ydata5=Number(document.getElementById('yValue5').textContent);
-	        
-	        axios.post('https://localhost/3000', xdata1)
-	   	axios.post('https://localhost/3000', xdata2)
-	        axios.post('https://localhost/3000', xdata3)
-	        axios.post('https://localhost/3000', xdata4)
-	        axios.post('https://localhost/3000', xdata5)
-	   
-	   	axios.post('https://localhost/3000', ydata1)
-	        axios.post('https://localhost/3000', ydata2)
-	        axios.post('https://localhost/3000', ydata3)
-	        axios.post('https://localhost/3000', ydata4)
-	        axios.post('https://localhost/3000', ydata5)
+    
+    const dataSet ={
+      xdata1,
+      xdata2,
+      xdata3,
+      xdata4,
+      xdata5,
 
-
-
+      ydata1,
+      ydata2,
+      ydata3,
+      ydata4,
+      ydata5
+    }
+	        axios.post('https://localhost/3000/NameForm', dataSet)
 	}
    //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
    componentDidMount() {
@@ -43,61 +45,16 @@ class NameForm extends React.Component {
 	})
 	.then((response) => {
   resultString.json().then((rSquareString)=>this.setState({ resultString: resultString }))
-	} 
+	}) 
 .catch(
   error => null 
-	))
+	);
   }
  
 
 
   render() {
-    return (
-      <form onSubmit={this.getData} />
-        <label>
-          X Data point 1:
-          <input type="text" id="xValue1"  />
-        </label>
-	  <label>
-          Y Data point 1:
-          <input type="text" id="yValue1" />
-        </label>
-      <label>
-          X Data point 2:
-          <input type="text" id="xValue2"  />
-        </label>
-      <label>
-          Y Data point 2:
-          <input type="text" id="yValue2" />
-        </label>
-      <label>
-          X Data point 3:
-          <input type="text" id="xValue3" />
-        </label>
-     <label>
-          Y Data point 3:
-          <input type="text" id="yValue3" />
-        </label>
-      <label>
-          X Data point 4:
-          <input type="text" id="xValue4" />
-        </label>
-	<label>
-          Y Data point 4:
-          <input type="text" id="yValue4" />
-        </label>
-      <label>
-          X Data point 5:
-          <input type="text" id="xValue5" />
-        </label>
-	<label>
-          Y Data point 5:
-          <input type="text"  id="yValue5"/>
-        </label>
- 
-      </form>
-	    <button onclick={this.getData} var="renderButton">Submit</button>
-          var dps = []; 
+    var dps = []; 
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
@@ -149,16 +106,68 @@ class NameForm extends React.Component {
 
             var renderButton = document.getElementById("renderButton");
             renderButton.addEventListener("click", addDataPointsAndRender);
+ 
+    return (
+       
+      <form onSubmit={this.getData} >
+        <label>
+          X Data point 1:
+          <input type="text" id="xValue1"  />
+        </label >
+	      <label>
+          Y Data point 1:
+          <input type="text" id="yValue1" />
+        </label>
+      <label>
+          X Data point 2:
+          <input type="text" id="xValue2"  />
+        </label>
+      <label>
+          Y Data point 2:
+          <input type="text" id="yValue2" />
+        </label>
+      <label>
+          X Data point 3:
+          <input type="text" id="xValue3" />
+        </label>
+     <label>
+          Y Data point 3:
+          <input type="text" id="yValue3" />
+        </label>
+      <label>
+          X Data point 4:
+          <input type="text" id="xValue4" />
+        </label>
+	<label>
+          Y Data point 4:
+          <input type="text" id="yValue4" />
+        </label>
+      <label>
+          X Data point 5:
+          <input type="text" id="xValue5" />
+        </label>
+	     <label>
+          Y Data point 5:
+          <input type="text"  id="yValue5"/>
+        </label>
+        
+	    <button onclick={getData}>
+          Submit
+       </button>
+       <div>
+        <CanvasJSChart chart= {chart} />
+      </div>
+        
+    </form>
+ 
+	 
+       
+         
       
  
     );
 	  
-	  return
-     (   <div>
-        <CanvasJSChart chart= {chart}
-        />
-      </div
-     );
+	  
   }
 }
 
@@ -166,5 +175,6 @@ ReactDOM.render(
   <NameForm />,
   document.getElementById('root')
 );
+
 
 
