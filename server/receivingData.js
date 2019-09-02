@@ -43,5 +43,8 @@ app.post('/create', function(req, res) {
 });
 
 app.listen(3001, () => {
-  console.log('Server Listening on port 3001');
+  console.log('Server listening on port 3001');
 });
+
+var spawn = require('child_process').spawn;
+var pythonProcess = spawn('python',["server/processing.py",data]);
