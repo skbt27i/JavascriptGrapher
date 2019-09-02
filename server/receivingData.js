@@ -38,8 +38,18 @@ app.post('/create', function(req, res) {
         "y4": req.body.ydata4,
         "y5": req.body.ydata5,
     }
- 
-  data.push(dataNext);
+ for(i=1; i <=5; i++)
+ {
+   var aKey = "x";
+   aKey += i.toString;
+   data.push(dataNext.aKey);
+ }
+   for(i=1; i <=5; i++)
+ {
+   var aKey = "y";
+   aKey += i.toString;
+   data.push(dataNext.aKey);
+ }
 });
 
 app.listen(3001, () => {
@@ -47,4 +57,16 @@ app.listen(3001, () => {
 });
 
 var spawn = require('child_process').spawn;
-var pythonProcess = spawn('python',["server/processing.py",data]);
+var py = spawn('python',["processing.py",data]);
+var dataString = '';
+
+// from https://www.sohamkamani.com/blog/2015/08/21/python-nodejs-comm/
+
+py.stdout.on('data', function(data){
+  dataString += data.toString();
+});
+py.stdout.on('end', function(){
+  console.log('Sum of numbers=',dataString);
+});
+py.stdin.write(JSON.stringify(data));
+py.stdin.end();
