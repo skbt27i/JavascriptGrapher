@@ -17,6 +17,20 @@ class NameForm extends React.Component {
 		var ydata3=Number(document.getElementById('yValue3').textContent);
 	        var ydata4=Number(document.getElementById('yValue4').textContent);
 	   	var ydata5=Number(document.getElementById('yValue5').textContent);
+	        
+	        axios.post('https://localhost/3000', xdata1)
+	   	axios.post('https://localhost/3000', xdata2)
+	        axios.post('https://localhost/3000', xdata3)
+	        axios.post('https://localhost/3000', xdata4)
+	        axios.post('https://localhost/3000', xdata5)
+	   
+	   	axios.post('https://localhost/3000', ydata1)
+	        axios.post('https://localhost/3000', ydata2)
+	        axios.post('https://localhost/3000', ydata3)
+	        axios.post('https://localhost/3000', ydata4)
+	        axios.post('https://localhost/3000', ydata5)
+
+
 
 	}
    //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
@@ -39,7 +53,7 @@ class NameForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} />
+      <form onSubmit={this.getData} />
         <label>
           X Data point 1:
           <input type="text" id="xValue1"  />
