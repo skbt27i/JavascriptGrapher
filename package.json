@@ -1,17 +1,20 @@
 {
- "name": "kmail",
+ "name": "grapher",
  "version": "1.0.0",
  "description": "",
- "main": "index.js",
  "scripts": {
- "client": "cd client && npm start",
- "server": "cd server && npm start",
- "start": "concurrently - kill-others \"npm run server\" \"npm run client\""
+     "start": "npm-run-all --parallel watch:server start:web",
+    "start:web": "react-scripts start",
+    "start:server": "node src/server",
+    "watch:server": "nodemon --watch src/server src/server",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
  },
  "keywords": [],
  "author": "",
  "license": "ISC",
  "devDependencies": {
- "concurrently": "³.5.1"
- }
+    "nodemon": "^1.18.8",
+    "npm-run-all": "^4.1.3" }
 }
