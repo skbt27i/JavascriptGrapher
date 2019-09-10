@@ -8,7 +8,10 @@ React UI?
 Use Node.js to talk to Python processing?
 
  To run (eventually):
-
+Install nodemon
+```
+npm i nodemon -g
+```
 
 ```
 npm start
