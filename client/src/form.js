@@ -1,7 +1,9 @@
-
 import React, {Component} from 'react';
 
 import axios from 'axios';
+import * as CanvasJSReact from './canvasjs.react';
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class NameForm extends React.Component {
    getData=()=>
@@ -170,11 +172,9 @@ class NameForm extends React.Component {
 	  
   }
 }
+export default NameForm;
 
 ReactDOM.render(
   <NameForm />,
   document.getElementById('root')
 );
-
-
-
