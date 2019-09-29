@@ -6,7 +6,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class NameForm extends React.Component {
-   getData=()=>
+   getData()
 	{
 		var xdata1=Number(document.getElementById('xValue1').textContent);
 		var xdata2=Number(document.getElementById('xValue2').textContent);
@@ -39,6 +39,7 @@ class NameForm extends React.Component {
 	}
    //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
    componentDidMount() {
+     var resultString;
     const data = new FormData();
 
     fetch('http://localhost:3001/', {
@@ -56,7 +57,7 @@ class NameForm extends React.Component {
 
 
   render() {
-    var dps = []; 
+    var dps1, dps2, dps3, dps4, dps5; 
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
@@ -71,6 +72,9 @@ class NameForm extends React.Component {
 	     //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
 
             function addDataPointsAndRender() {
+              var x1Value, x2Value, x3Value, x4Value, x5Value;
+              var y1Value, y2Value, y3Value, y4Value, y5Value;
+
                 x1Value = Number(document.getElementById("xValue1").textContent);
                 x2Value = Number(document.getElementById("xValue2").textContent);
 		x3Value = Number(document.getElementById("xValue3").textContent);
@@ -84,24 +88,24 @@ class NameForm extends React.Component {
 		y5Value = Number(document.getElementById("yValue5").textContent);
 
                 dps1.push({
-                    x1: xValue,
-                    y1: yValue
+                    x1: x1Value,
+                    y1: y1Value
                 });
 		    dps2.push({
-                    x2: xValue,
-                    y2: yValue
+                    x2: x2Value,
+                    y2: y2Value
                 });
 		    dps3.push({
-                    x3: xValue,
-                    y3: yValue
+                    x3: x3Value,
+                    y3: y3Value
                 });
 		    dps4.push({
-                    x4: xValue,
-                    y4: yValue
+                    x4: x4Value,
+                    y4: y4Value
                 });
 		    dps5.push({
-                    x5: xValue,
-                    y5: yValue
+                    x5: x5Value,
+                    y5: y5Value
                 });
                 chart.render();
             }
@@ -153,7 +157,7 @@ class NameForm extends React.Component {
           <input type="text"  id="yValue5"/>
         </label>
         
-	    <button onclick={getData}>
+	    <button onclick={this.getData}>
           Submit
        </button>
        <div>
@@ -173,8 +177,3 @@ class NameForm extends React.Component {
   }
 }
 export default NameForm;
-
-ReactDOM.render(
-  <NameForm />,
-  document.getElementById('root')
-);
