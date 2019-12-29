@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/users', routes);
+app.use('/api/routes', routes);
 
 let data = [];
 
