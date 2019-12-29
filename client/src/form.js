@@ -35,14 +35,18 @@ class NameForm extends React.Component {
       ydata4,
       ydata5
     }
-	        axios.post('https://localhost/3000/home', dataSet)
+	        axios.get('https://localhost/3000/create')
+			.then(function(response) {
+				dataSet: response.data;
+			
+	})
 	}
    //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
    componentDidMount() {
      var resultString;
     const data = new FormData();
 
-    fetch('http://localhost:3000/', {
+    axios.get('http://localhost:3000/', {
   method: 'POST',
   body: data
 	})
@@ -54,24 +58,9 @@ class NameForm extends React.Component {
 	);
   }
  
-
-
-  render() {
-    var dps1, dps2, dps3, dps4, dps5; 
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: "Linear Regression"
-                },
-                data: [{
-                    type: "line",
-                    dataPoints: dps1, dps2, dps3, dps4, dps5
-                }]
-            });
-
-	     //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
-
-            function addDataPointsAndRender() {
+      
+		addDataPointsAndRender() {
+	      
               var x1Value, x2Value, x3Value, x4Value, x5Value;
               var y1Value, y2Value, y3Value, y4Value, y5Value;
 
@@ -109,6 +98,23 @@ class NameForm extends React.Component {
                 });
                 chart.render();
             }
+
+  render() {
+    var dps1, dps2, dps3, dps4, dps5; 
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Linear Regression"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: dps1, dps2, dps3, dps4, dps5
+                }]
+            });
+            var rString = {this.componenDidMount()};
+	     //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
+
+           
 
             var renderButton = document.getElementById("renderButton");
             renderButton.addEventListener("click", addDataPointsAndRender);
@@ -165,6 +171,9 @@ class NameForm extends React.Component {
       </div>
         
     </form>
+	   <div>
+	    {this.addDataPointsAndRender()}
+	   </div>
  
 	 
        
