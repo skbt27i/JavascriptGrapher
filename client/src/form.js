@@ -35,14 +35,14 @@ class NameForm extends React.Component {
       ydata4,
       ydata5
     }
-	        axios.post('https://localhost/3000/NameForm', dataSet)
+	        axios.post('https://localhost/3000/home', dataSet)
 	}
    //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
    componentDidMount() {
      var resultString;
     const data = new FormData();
 
-    fetch('http://localhost:3001/', {
+    fetch('http://localhost:3000/', {
   method: 'POST',
   body: data
 	})
