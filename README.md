@@ -6,6 +6,7 @@ The idea is to grab data with some sort of front end, process it using Javascrip
 
 
  To run (eventually):
+ Go to the backend, then... 
 ```
 npm install
 ```
