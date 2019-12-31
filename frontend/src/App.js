@@ -5,7 +5,7 @@ import * as CanvasJSReact from './canvasjs.react';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class NameForm extends React.Component {
+class App extends React.Component {
    getData()
 	{
 		var xdata1=Number(document.getElementById('xValue1').textContent);
@@ -35,7 +35,7 @@ class NameForm extends React.Component {
       ydata4,
       ydata5
     }
-	        axios.get('https://localhost/3000/create')
+	        axios.get('https://localhost/3000/create', dataSet)
 			.then(function(response) {
 				dataSet: response.data;
 			
@@ -185,4 +185,4 @@ class NameForm extends React.Component {
 	  
   }
 }
-export default NameForm;
+export default App;

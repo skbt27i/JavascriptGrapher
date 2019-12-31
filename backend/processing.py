@@ -37,9 +37,9 @@ def main();
  b = graph.intercept_
 
  rsquare = graph.score(x, y)
+ 
+ print( str(m) + "x +" + str(b))
+ print( str(rsquare))
 
- while True:
-     out = data.stdout.read(1)
-               
 if __name__ == '__main__':
                main()
