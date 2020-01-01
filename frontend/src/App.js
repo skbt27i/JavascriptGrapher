@@ -1,54 +1,103 @@
 import React, {Component} from 'react';
 
 import axios from 'axios';
-import * as CanvasJSReact from './canvasjs.react';
+var CanvasJSReact = require('./canvasjs.react');
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var dps1, dps2, dps3, dps4, dps5; 
+var chart;
 
+
+var x1Value, x2Value, x3Value, x4Value, x5Value;
+var y1Value, y2Value, y3Value, y4Value, y5Value;
+var dataSet =[];
+var dps1 = [];
+var dps2 = [];
+var rString;
+var m;
+var b;
+var maxVal;
+
+//define resultString in constructor
 class App extends React.Component {
+		linReg(){
+		//seperate r string into m and b
+                }
+ 
+		addDataPointsAndRender() {
+	      
+               //rename to dataSet. ...
+                
+                dps1.push({
+                    x: dataSet.xdata1,
+                    y: y1Value
+                });
+		    dps1.push({
+                    x: x2Value,
+                    y: y2Value
+                });
+		    dps1.push({
+                    x: x3Value,
+                    y: y3Value
+                });
+		    dps1.push({
+                    x: x4Value,
+                    y: y4Value
+                });
+		    dps1.push({
+                    x: x5Value,
+                    y: y5Value
+                });
+
+//figure out maximum x value
+
+                for(var i =0; i < maxVal+5; i++) {
+		 var x1 = i;
+		 var y1 = (x1*m) +b;
+		 dps2.push({
+		 x: x1,
+                 y: y1
+		 
+                });
+                }
+                chart.render();
+            }
+
    getData()
 	{
-		var xdata1=Number(document.getElementById('xValue1').textContent);
-		var xdata2=Number(document.getElementById('xValue2').textContent);
-		var xdata3=Number(document.getElementById('xValue3').textContent);
-	        var xdata4=Number(document.getElementById('xValue4').textContent);
-	   	var xdata5=Number(document.getElementById('xValue5').textContent);
+		var x1Value=Number(document.getElementById('xValue1').textContent);
+		var x2Value=Number(document.getElementById('xValue2').textContent);
+		var x3Value=Number(document.getElementById('xValue3').textContent);
+	        var x4Value=Number(document.getElementById('xValue4').textContent);
+	   	var x5Value=Number(document.getElementById('xValue5').textContent);
 
 	   
 	   
-	        var ydata1=Number(document.getElementById('yValue1').textContent);
-		var ydata2=Number(document.getElementById('yValue2').textContent);
-		var ydata3=Number(document.getElementById('yValue3').textContent);
-	        var ydata4=Number(document.getElementById('yValue4').textContent);
-	   	var ydata5=Number(document.getElementById('yValue5').textContent);
+	        var y1Value=Number(document.getElementById('yValue1').textContent);
+		var y2Value=Number(document.getElementById('yValue2').textContent);
+		var y3Value=Number(document.getElementById('yValue3').textContent);
+	        var y4Valu3=Number(document.getElementById('yValue4').textContent);
+	   	var y5Value=Number(document.getElementById('yValue5').textContent);
     
-    const dataSet ={
-      xdata1,
-      xdata2,
-      xdata3,
-      xdata4,
-      xdata5,
+    dataSet ={
+      x1Value,
+      x2Value,
+      x3Value,
+      x4Value,
+      x5Value,
 
-      ydata1,
-      ydata2,
-      ydata3,
-      ydata4,
-      ydata5
+      y1Value,
+      y2Value,
+      y3Value,
+      y4Value,
+      y5Value
     }
-	        axios.get('https://localhost/3000/create', dataSet)
-			.then(function(response) {
-				dataSet: response.data;
-			
-	})
 	}
-   //from https://stackoverflow.com/questions/50833719/sending-a-string-from-node-js-to-a-component-react-js
-   componentDidMount() {
-     var resultString;
-    const data = new FormData();
-
-    axios.get('http://localhost:3000/', {
+   
+ componentDidMount() {
+    axios.get('/equation', {
   method: 'POST',
-  body: data
+  body: dataSet
 	})
 	.then((response) => {
   resultString.json().then((rSquareString)=>this.setState({ resultString: resultString }))
@@ -59,69 +108,45 @@ class App extends React.Component {
   }
  
       
-		addDataPointsAndRender() {
-	      
-              var x1Value, x2Value, x3Value, x4Value, x5Value;
-              var y1Value, y2Value, y3Value, y4Value, y5Value;
+		
 
-                x1Value = Number(document.getElementById("xValue1").textContent);
-                x2Value = Number(document.getElementById("xValue2").textContent);
-		x3Value = Number(document.getElementById("xValue3").textContent);
-                x4Value = Number(document.getElementById("xValue4").textContent);
-		x5Value = Number(document.getElementById("xValue5").textContent);
-		    
-		y1Value = Number(document.getElementById("yValue1").textContent);
-                y2Value = Number(document.getElementById("yValue2").textContent);
-		y3Value = Number(document.getElementById("yValue3").textContent);
-                y4Value = Number(document.getElementById("yValue4").textContent);
-		y5Value = Number(document.getElementById("yValue5").textContent);
 
-                dps1.push({
-                    x1: x1Value,
-                    y1: y1Value
-                });
-		    dps2.push({
-                    x2: x2Value,
-                    y2: y2Value
-                });
-		    dps3.push({
-                    x3: x3Value,
-                    y3: y3Value
-                });
-		    dps4.push({
-                    x4: x4Value,
-                    y4: y4Value
-                });
-		    dps5.push({
-                    x5: x5Value,
-                    y5: y5Value
-                });
-                chart.render();
-            }
 
   render() {
-    var dps1, dps2, dps3, dps4, dps5; 
+          {this.componentDidMount()};
 
-            var chart = new CanvasJS.Chart("chartContainer", {
+           rString =  this.resultString;
+          
+	   {this.linReg()};
+            chart = new CanvasJS.Chart("chartContainer", {
                 title: {
                     text: "Linear Regression"
                 },
                 data: [{
-                    type: "line",
-                    dataPoints: dps1, dps2, dps3, dps4, dps5
-                }]
+                    type: "scatter",
+                    dataPoints: dps1
+                },
+		{
+		  type: "line",
+		  dataPoints: dps2
+                 }
+                ]
             });
-            var rString = {this.componenDidMount()};
-	     //from https://canvasjs.com/docs/charts/how-to/render-chart-by-accepting-datapoints-from-user-input/
+
+
+            {this.addDataPointsAndRender()};
+            
+
+	     
 
            
 
-            var renderButton = document.getElementById("renderButton");
-            renderButton.addEventListener("click", addDataPointsAndRender);
+
+
  
     return (
        
-      <form onSubmit={this.getData} >
+      <form >
         <label>
           X Data point 1:
           <input type="text" id="xValue1"  />
@@ -163,7 +188,8 @@ class App extends React.Component {
           <input type="text"  id="yValue5"/>
         </label>
         
-	    <button onclick={this.getData}>
+	    <button onClick={this.getData()}>
+
           Submit
        </button>
        <div>
@@ -171,9 +197,7 @@ class App extends React.Component {
       </div>
         
     </form>
-	   <div>
-	    {this.addDataPointsAndRender()}
-	   </div>
+	   
  
 	 
        
