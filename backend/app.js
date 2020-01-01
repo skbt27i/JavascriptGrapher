@@ -2,7 +2,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const routes = require('./routes');
+const routes = require("./routes/routes.js");
 
 const app = express();
 app.use(
@@ -33,3 +33,4 @@ app.listen(3001, () => {
 });
 
 
+module.exports = app;

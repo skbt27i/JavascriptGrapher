@@ -31,11 +31,11 @@ router.post('/create', function(req, res) {
  }
 });
 
-router.post('/equation', function(req, res) {
+router.post('/equation', function(req, res)  {
 var totString = equation(req.body);
 //specify what data is
 //parse string for r2 and lin reg equation
 });
 
 
-module.exports = routes;
+module.exports = router;
