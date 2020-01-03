@@ -7,6 +7,9 @@ Project Status:
 - Frontend and backend now working, rough display of linear regression equation on page, no trendline/coeff of determination yet
 - Need to properly format LinReg equation and provide data for line, add r/r^2
 
+
+Before running, get python, pip and npm!
+
 To run working frontend (scatter plotter)...
 ```
 Cd frontend
@@ -16,7 +19,7 @@ Go to localhost:3000
 ```
 To run working backend (sends LinReg data to frontend app)...
 ```
-Install python, and pip install numpy
+pip install numpy
 Cd backend
 npm install
 npm start

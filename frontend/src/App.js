@@ -59,7 +59,7 @@ class App extends Component {
 	getData (event)  {
 		event.preventDefault();
 		dataSet = [];
-		this.linReg();
+		
     
     
     this.state.dps1[0].x = this.state.x1;
@@ -86,7 +86,7 @@ class App extends Component {
     dataSet.push(this.state.x5);
     this.state.dps1[4].y = this.state.y5;
     dataSet.push(this.state.y5);
-    
+    this.linReg();
 		
 	
 		
