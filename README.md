@@ -20,13 +20,11 @@ Go to localhost:3000
  Go to the backend, then... 
 ```
 npm install
+npm run-script
+Go to localhost:3000
 ```
 
-```
-npm run-scripts
-```
 
 
 
 
- Go to localhost:3000
