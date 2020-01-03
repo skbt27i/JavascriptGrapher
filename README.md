@@ -7,7 +7,7 @@ Project Status:
 - Frontend now working, no linear regression line however
 - Need to send data to backend, process it, and return a linreg equation/correlation for frontend
 
-To run working frontend...
+To run working frontend (scatter plotter)...
 ```
 Cd frontend
 npm install
