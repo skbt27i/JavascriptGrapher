@@ -1,14 +1,36 @@
 const express = require("express");
 const router = express.Router();
-
+var dataString ='';
 var equation = require('../regressionData.js');
 
 
 
 router.post('/equation', function(req, res)  {
-var totString = equation(req.body);
-//specify what data is
-//parse string for r2 and lin reg equation
+    dataString = '';
+    var spawn = require('child_process').spawn,
+    py = spawn('python', ['./processing.py']),
+    data = req.body.data
+    
+    
+
+
+
+py.stdout.on('data', function(data){
+  dataString += data.toString();
+});
+
+py.stdout.on('end', function(){
+  console.log(dataString)
+  res.send(dataString);
+});
+
+py.stdin.write(JSON.stringify(data));
+
+py.stdin.end();
+
+
+return res;
+
 });
 
 

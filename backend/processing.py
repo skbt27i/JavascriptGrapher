@@ -1,45 +1,60 @@
 
 
-import json
-import sys, numpy as np
-from sklearn.linear_model import LinearRegression
+import sys, json, numpy as np
+
+def estimate_coef(x, y): 
+   
+    n = np.size(x) 
+  
+    
+    m_x, m_y = np.mean(x), np.mean(y) 
+  
+   
+    SS_xy = np.sum(y*x) - n*m_y*m_x 
+    SS_xx = np.sum(x*x) - n*m_x*m_x 
+  
+    
+    b_1 = SS_xy / SS_xx 
+    b_0 = m_y - b_1*m_x 
+  
+    return(b_0, b_1) 
+
 
 def read_in():
- lines = sys.stdin.readlines()
- return json.loads(lines[0])
+    lines = sys.stdin.readlines()
+    
+    return json.loads(lines[0])
 
+def main():
+    lines = read_in()
 
+    
+    datas = np.array(lines)
+    
+    xDataPoint1 = datas[0]
+    xDataPoint2 = datas[1]
+    xDataPoint3 = datas[2]
+    xDataPoint4 = datas[3]
+    xDataPoint5 = datas[4]
 
+    yDataPoint1 = datas[5]
+    yDataPoint2 = datas[6]
+    yDataPoint3 = datas[7]
+    yDataPoint4 = datas[8]
+    yDataPoint5 = datas[9]
+    
+    x = np.array([xDataPoint1, xDataPoint2, xDataPoint3, xDataPoint4, xDataPoint5])
+    y = np.array([yDataPoint1, yDataPoint2, yDataPoint3, yDataPoint4, yDataPoint5])
+    
+    
+    ar = estimate_coef(x, y) 
+    b = ar[0]
+    m = ar[1]
 
-def main();
-  lines = read_in()
- 
- datas = np.array(lines)
+    
+    print(m)
+    print(b)
 
-
- xDataPoint1 = datas[0]
- xDataPoint2 = datas[1]
- xDataPoint3 = datas[2]
- xDataPoint4 = datas[3]
- xDataPoint5 = datas[4]
-
- yDataPoint1 = datas[5]
- yDataPoint2 = datas[6]
- yDataPoint3 = datas[7]
- yDataPoint4 = datas[8]
- yDataPoint5 = datas[9]
- 
- x = np.array([xDataPoint1, xDataPoint2, xDataPoint3, xDataPoint4, xDataPoint5]).reshape((-1, 1))
- y = np.array([yDataPoint1, yDataPoint2, yDataPoint3, yDataPoint4, yDataPoint5)
- graph = LinearRegression()
- graph.fit(x, y)
- m = graph.coef_
- b = graph.intercept_
-
- rsquare = graph.score(x, y)
- 
- print( str(m) + "x +" + str(b))
- print( str(rsquare))
 
 if __name__ == '__main__':
-               main()
+    main()

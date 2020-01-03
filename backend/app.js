@@ -2,19 +2,24 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+var path = require('path');
 const routes = require("./routes/routes.js");
-
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 const app = express();
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
-);
+
+var corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['x-auth-token']
+};
+app.use(cors(corsOption));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 app.use('/api/routes', routes);
 
@@ -27,10 +32,13 @@ app.get('/home', function(req, res) {
   res.end(JSON.stringify(data));
 });
 
-
-app.listen(3001, () => {
-  console.log('Server listening on port 3001');
-});
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 module.exports = app;
