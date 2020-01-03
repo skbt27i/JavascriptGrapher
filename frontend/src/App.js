@@ -1,212 +1,183 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
+import CanvasJSReact from './canvasjs.react';
 import axios from 'axios';
-var CanvasJSReact = require('./canvasjs.react');
 var CanvasJS = CanvasJSReact.CanvasJS;
+
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var dps1, dps2, dps3, dps4, dps5; 
-var chart;
-
-
 var x1Value, x2Value, x3Value, x4Value, x5Value;
 var y1Value, y2Value, y3Value, y4Value, y5Value;
-var dataSet =[];
-var dps1 = [];
-var dps2 = [];
+
 var rString;
 var m;
 var b;
 var maxVal;
+var dataSet;
+var dps1 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
+var dps2 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
 
-//define resultString in constructor
-class App extends React.Component {
-		linReg(){
-		//seperate r string into m and b
-                }
- 
-		addDataPointsAndRender() {
-	      
-               //rename to dataSet. ...
-                
-                dps1.push({
-                    x: dataSet.xdata1,
-                    y: y1Value
-                });
-		    dps1.push({
-                    x: x2Value,
-                    y: y2Value
-                });
-		    dps1.push({
-                    x: x3Value,
-                    y: y3Value
-                });
-		    dps1.push({
-                    x: x4Value,
-                    y: y4Value
-                });
-		    dps1.push({
-                    x: x5Value,
-                    y: y5Value
-                });
 
-//figure out maximum x value
+class App extends Component {
+	constructor(){
+		super();
+		this.state = {resultString: '', x1: 0, x2: 0, x3: 0, x4: 0, x5: 0, y1:0, y2: 0, y3: 0, y4: 0, y5:0, dps1, dps2};
+    this.getData = this.getData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
-                for(var i =0; i < maxVal+5; i++) {
-		 var x1 = i;
-		 var y1 = (x1*m) +b;
-		 dps2.push({
-		 x: x1,
-                 y: y1
-		 
-                });
-                }
-                chart.render();
-            }
-
-   getData()
-	{
-		var x1Value=Number(document.getElementById('xValue1').textContent);
-		var x2Value=Number(document.getElementById('xValue2').textContent);
-		var x3Value=Number(document.getElementById('xValue3').textContent);
-	        var x4Value=Number(document.getElementById('xValue4').textContent);
-	   	var x5Value=Number(document.getElementById('xValue5').textContent);
-
-	   
-	   
-	        var y1Value=Number(document.getElementById('yValue1').textContent);
-		var y2Value=Number(document.getElementById('yValue2').textContent);
-		var y3Value=Number(document.getElementById('yValue3').textContent);
-	        var y4Valu3=Number(document.getElementById('yValue4').textContent);
-	   	var y5Value=Number(document.getElementById('yValue5').textContent);
-    
-    dataSet ={
-      x1Value,
-      x2Value,
-      x3Value,
-      x4Value,
-      x5Value,
-
-      y1Value,
-      y2Value,
-      y3Value,
-      y4Value,
-      y5Value
     }
-	}
    
- componentDidMount() {
-    axios.get('/equation', {
-  method: 'POST',
-  body: dataSet
-	})
-	.then((response) => {
-  resultString.json().then((rSquareString)=>this.setState({ resultString: resultString }))
-	}) 
-.catch(
-  error => null 
-	);
-  }
- 
-      
+   
+	
+			/*linReg() {
+        axios.get('/equation', {
+          method: 'POST',
+          body: dataSet
+          })
+          .then((response) => {
+          resultString.json().then((response)=>this.setState({ resultString: resultString }))
+          }) 
+        .catch(
+          error => null 
+          );
+        }
+
+        //modify dps2 to achieve linear regression
+        setLine(){
+
+        } */
+    
+    handleChange (e) {
+     
+      this.setState({[e.target.name]: e.target.type === 'number' ? parseInt(e.target.value) : e.target.value});
+    }
+	
+	getData (event)  {
+		event.preventDefault();
 		
+		
+    
+    
+	  this.state.dps1[0].x = this.state.x1;
+    this.state.dps1[0].y = this.state.y1;
 
 
+	  this.state.dps1[1].x = this.state.x2;
+    this.state.dps1[1].y =this.state.y2;
 
-  render() {
-          {this.componentDidMount()};
-
-           rString =  this.resultString;
-          
-	   {this.linReg()};
-            chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: "Linear Regression"
-                },
-                data: [{
-                    type: "scatter",
-                    dataPoints: dps1
-                },
-		{
-		  type: "line",
-		  dataPoints: dps2
-                 }
-                ]
-            });
+	  this.state.dps1[2].x = this.state.x3;
+    this.state.dps1[2].y = this.state.y3;
+    
+	  this.state.dps1[3].x = this.state.x4;
+    this.state.dps1[3].y = this.state.y4;
+    
+	  this.state.dps1[4].x = this.state.x5;
+    this.state.dps1[4].y = this.state.y5;
+    
+		
+	
+		
+		
+		this.chart.render();
 
 
-            {this.addDataPointsAndRender()};
-            
-
-	     
-
-           
-
-
-
- 
-    return (
-       
-      <form >
+		dataSet ={
+		  x1Value,
+		  x2Value,
+		  x3Value,
+		  x4Value,
+		  x5Value,
+	
+		  y1Value,
+		  y2Value,
+		  y3Value,
+		  y4Value,
+		  y5Value
+		}
+		}
+	render() {
+		const options =  {
+			title: {
+				text: "Linear Regression"
+			},
+			data: [{
+				type: "scatter",
+				dataPoints: this.state.dps1
+			},
+			 {
+				type: "line",
+				dataPoints: this.state.dps2
+			 }
+			]
+		}
+		
+		return (
+	<div>
+		<h1>React Line Chart</h1>
+			<CanvasJSChart options = {options} 
+				  onRef={ref => this.chart = ref} 
+			/>
+    
+      
+		<form onSubmit ={this.getData}>
         <label>
           X Data point 1:
-          <input type="text" id="xValue1"  />
-        </label >
+          </label>
+          <input type="number" name="x1"  onChange={this.handleChange}/>
+        
 	      <label>
           Y Data point 1:
-          <input type="text" id="yValue1" />
-        </label>
+          </label>
+          <input type="number" name="y1" onChange={this.handleChange}/>
+        
       <label>
           X Data point 2:
-          <input type="text" id="xValue2"  />
-        </label>
+          </label>
+          <input type="number" name="x2" onChange={this.handleChange} />
+        
       <label>
           Y Data point 2:
-          <input type="text" id="yValue2" />
-        </label>
+          </label>
+          <input type="number" name="y2" onChange={this.handleChange}/>
+        
       <label>
           X Data point 3:
-          <input type="text" id="xValue3" />
-        </label>
+          </label>
+          <input type="number" name="x3" onChange={this.handleChange}/>
+      
      <label>
           Y Data point 3:
-          <input type="text" id="yValue3" />
-        </label>
+          </label>
+          <input type="number" name="y3" onChange={this.handleChange} />
+        
       <label>
           X Data point 4:
-          <input type="text" id="xValue4" />
-        </label>
+          </label>
+          <input type="number" name="x4" onChange={this.handleChange}/>
+        
 	<label>
           Y Data point 4:
-          <input type="text" id="yValue4" />
-        </label>
+          </label>
+          <input type="number" name="y4" onChange={this.handleChange}/>
+        
       <label>
           X Data point 5:
-          <input type="text" id="xValue5" />
-        </label>
+          </label>
+          <input type="number" name="x5" onChange={this.handleChange}/>
+        
 	     <label>
           Y Data point 5:
-          <input type="text"  id="yValue5"/>
-        </label>
+          </label>
+          <input type="number"  name="y5" onChange={this.handleChange}/>
         
-	    <button onClick={this.getData()}>
+        <input type="submit" value="Submit" />
 
-          Submit
-       </button>
-       <div>
-        <CanvasJSChart chart= {chart} />
-      </div>
-        
     </form>
-	   
- 
-	 
-       
-         
-      
- 
-    );
-	  
-	  
-  }
+    
+    //{this.linReg};
+			
+			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+		</div>
+		);
+	}
 }
-export default App;
+
+export default App;             
