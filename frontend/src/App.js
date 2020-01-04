@@ -4,8 +4,7 @@ import axios from 'axios';
 var CanvasJS = CanvasJSReact.CanvasJS;
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var x1Value, x2Value, x3Value, x4Value, x5Value;
-var y1Value, y2Value, y3Value, y4Value, y5Value;
+
 
 var m;
 var b;
@@ -13,12 +12,12 @@ var maxVal;
 var dataSet = [];
 var dps1 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
 var dps2 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
-
+var splitted= [];
 
 class App extends Component {
 	constructor(){
 		super();
-		this.state = {resultString: '', x1: 0, x2: 0, x3: 0, x4: 0, x5: 0, y1:0, y2: 0, y3: 0, y4: 0, y5:0, dps1, dps2};
+		this.state = {resultString: '', x1: 0, x2: 0, x3: 0, x4: 0, x5: 0, y1:0, y2: 0, y3: 0, y4: 0, y5:0, dps1, dps2, splitted: []};
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.linReg = this.linReg.bind(this);
@@ -27,16 +26,29 @@ class App extends Component {
    
    
 	
-			linReg(e) {
+			linReg() {
         
         axios.post('http://localhost:4000/api/routes/equation', {
           data: dataSet
           })
           .then((response) => {
             
-            this.setState({ resultString: response.data });
-            console.log(this.state.resultString);
-            
+            this.setState({ resultString: response.data});
+            this.setState({splitted: response.data.split(" ")});
+            var bHolder=this.state.splitted[0];
+            var mHolder=this.state.splitted[3];
+            console.log(this.state.splitted[0]);
+    
+              m= parseFloat(mHolder);
+              b = parseFloat(bHolder);
+    
+              for(var i =0; i < this.state.dps2.length; i++)
+              {
+              this.state.dps2[i].y = (m * this.state.dps2[i].x) + b;
+    
+              }
+    this.chart.render();
+	
           },
           (error) => {
            console.log(error);
@@ -47,9 +59,7 @@ class App extends Component {
       }
 
         //modify dps2 to achieve linear regression
-        setLine(){
-
-        } 
+     
     
     handleChange (e) {
      
@@ -63,35 +73,38 @@ class App extends Component {
     
     
     this.state.dps1[0].x = this.state.x1;
+    this.state.dps2[0].x = 0;
     dataSet.push(this.state.x1);
     this.state.dps1[0].y = this.state.y1;
     dataSet.push(this.state.y1);
 
     this.state.dps1[1].x = this.state.x2;
+    this.state.dps2[1].x = this.state.x2;
     dataSet.push(this.state.x2);
     this.state.dps1[1].y =this.state.y2;
     dataSet.push(this.state.y2);
 
     this.state.dps1[2].x = this.state.x3;
+    this.state.dps2[2].x = this.state.x3;
     dataSet.push(this.state.x3);
     this.state.dps1[2].y = this.state.y3;
     dataSet.push(this.state.y3);
     
     this.state.dps1[3].x = this.state.x4;
+    this.state.dps2[3].x = this.state.x4;
     dataSet.push(this.state.x4);
     this.state.dps1[3].y = this.state.y4;
     dataSet.push(this.state.y4);
 
     this.state.dps1[4].x = this.state.x5;
+    this.state.dps2[4].x = this.state.x5;
     dataSet.push(this.state.x5);
     this.state.dps1[4].y = this.state.y5;
     dataSet.push(this.state.y5);
     this.linReg();
+
 		
-	
-		
-		
-		this.chart.render();
+
 
 
 	

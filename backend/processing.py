@@ -52,8 +52,8 @@ def main():
     m = ar[1]
 
     
-    print(m)
-    print(b)
+    print(b," ", m)
+    
 
 
 if __name__ == '__main__':
