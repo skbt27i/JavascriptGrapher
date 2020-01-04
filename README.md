@@ -4,7 +4,7 @@ Proposal:
 The idea is to grab data with some sort of front end, process it using Javascript, and interpret it into a linear regression, which is then displayed to a user.
 
 Project Status:
-- Frontend and backend now working, rough display of LinReg equation/trendline on page, coeff of determination yet
+- Frontend and backend now working, rough display of LinReg equation/trendline on page, no coeff of determination yet
 - Need to properly format LinReg equation and line, add r/r^2, add axis labels, integrate runtime in one command
 
 
