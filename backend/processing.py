@@ -43,7 +43,7 @@ def main():
     yDataPoint4 = datas[7]
 
     xDataPoint5 = datas[8]
-    xDataPoint5 = datas[9]
+    yDataPoint5 = datas[9]
 
     x = np.array([xDataPoint1, xDataPoint2, xDataPoint3, xDataPoint4, xDataPoint5])
     y = np.array([yDataPoint1, yDataPoint2, yDataPoint3, yDataPoint4, yDataPoint5])
