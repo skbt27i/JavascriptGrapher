@@ -1,5 +1,4 @@
 
-
 import sys, json, numpy as np
 
 def estimate_coef(x, y): 
@@ -32,17 +31,20 @@ def main():
     datas = np.array(lines)
     
     xDataPoint1 = datas[0]
-    xDataPoint2 = datas[1]
-    xDataPoint3 = datas[2]
-    xDataPoint4 = datas[3]
-    xDataPoint5 = datas[4]
+    yDataPoint1 = datas[1]
 
-    yDataPoint1 = datas[5]
-    yDataPoint2 = datas[6]
-    yDataPoint3 = datas[7]
-    yDataPoint4 = datas[8]
-    yDataPoint5 = datas[9]
-    
+    xDataPoint2 = datas[2]
+    yDataPoint2 = datas[3]
+
+    xDataPoint3 = datas[4]
+    yDataPoint3 = datas[5]
+
+    xDataPoint4 = datas[6]
+    yDataPoint4 = datas[7]
+
+    xDataPoint5 = datas[8]
+    xDataPoint5 = datas[9]
+
     x = np.array([xDataPoint1, xDataPoint2, xDataPoint3, xDataPoint4, xDataPoint5])
     y = np.array([yDataPoint1, yDataPoint2, yDataPoint3, yDataPoint4, yDataPoint5])
     
