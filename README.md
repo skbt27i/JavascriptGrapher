@@ -1,7 +1,7 @@
 # JavascriptGrapher
 
-Proposal:
-The idea is to grab data with some sort of front end, process it using Javascript, and interpret it into a linear regression, which is then displayed to a user.
+
+This app grabs data points with a React frontend, processes it, and interprets it into a linear regression with a Node Express backend, which then displays a linear regression and its equation.
 
 Project Status:
 - Frontend and backend now working, rough display of LinReg equation/trendline on page, no coeff of determination yet
