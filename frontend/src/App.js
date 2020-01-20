@@ -21,8 +21,7 @@ class App extends Component {
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.linReg = this.linReg.bind(this);
-
-    }
+  }
    
    
 	
@@ -33,21 +32,23 @@ class App extends Component {
           })
           .then((response) => {
             
-            this.setState({ resultString: response.data});
             this.setState({splitted: response.data.split(" ")});
             var bHolder=this.state.splitted[0];
             var mHolder=this.state.splitted[3];
-            console.log(this.state.splitted[0]);
     
               m= parseFloat(mHolder);
               b = parseFloat(bHolder);
+              let string1 = " ";
+              string1 = string1 + m +"X + " + b;
+              
+              this.setState({resultString: string1});
     
               for(var i =0; i < this.state.dps2.length; i++)
               {
               this.state.dps2[i].y = (m * this.state.dps2[i].x) + b;
     
               }
-    this.chart.render();
+                    this.chart.render();
 	
           },
           (error) => {
@@ -58,7 +59,6 @@ class App extends Component {
         
       }
 
-        //modify dps2 to achieve linear regression
      
     
     handleChange (e) {
@@ -102,13 +102,8 @@ class App extends Component {
     this.state.dps1[4].y = this.state.y5;
     dataSet.push(this.state.y5);
     this.linReg();
-
-		
-
-
-
-	
-		}
+  }
+  
 	render() {
 		const options =  {
 			title: {
