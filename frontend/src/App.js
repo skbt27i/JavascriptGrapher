@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 import axios from 'axios';
+
+
 var CanvasJS = CanvasJSReact.CanvasJS;
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-
-var m;
-var b;
-var maxVal;
+var m, b , r2;
 var dataSet = [];
 var dps1 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
 var dps2 =[{x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}, {x:1, y:1}];
-var splitted= [];
 
 class App extends Component {
 	constructor(){
 		super();
-		this.state = {resultString: '', x1: 0, x2: 0, x3: 0, x4: 0, x5: 0, y1:0, y2: 0, y3: 0, y4: 0, y5:0, dps1, dps2, splitted: []};
+		this.state = {resultString: '', x1: 0, x2: 0, x3: 0, x4: 0, x5: 0, y1:0, y2: 0, y3: 0, y4: 0, y5:0, dps1, dps2, splitted: [], m, b, r2};
     this.getData = this.getData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.linReg = this.linReg.bind(this);
@@ -35,12 +33,14 @@ class App extends Component {
             this.setState({splitted: response.data.split(" ")});
             var bHolder=this.state.splitted[0];
             var mHolder=this.state.splitted[3];
+            var rHolder = this.state.splitted[6];
+            console.log(this.state.splitted[0]);
     
               m= parseFloat(mHolder);
               b = parseFloat(bHolder);
               let string1 = " ";
+              r2 = " "+ parseFloat(rHolder);
               string1 = string1 + m +"X + " + b;
-              
               this.setState({resultString: string1});
     
               for(var i =0; i < this.state.dps2.length; i++)
@@ -129,10 +129,14 @@ class App extends Component {
 			/>
       
     <label>
-      Linear Regression Data:
+      Linear Regression Equation:
     </label>
     {this.state.resultString}
-      
+    <br></br>
+    <label>
+      r^2: 
+    </label>
+    {r2}
 		<form onSubmit ={this.getData}>
         <label>
           X Data point 1:

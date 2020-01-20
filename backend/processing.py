@@ -1,5 +1,15 @@
-
+from statistics import mean
 import sys, json, numpy as np
+
+
+
+def coeff_of_det(ys, line):
+
+    yLine =[mean(ys) for y in ys]
+    sqErr1 = sum((ys - line) * (ys - line))
+    sqErr2 = sum((ys - yLine) * (ys - yLine))
+    return 1 -(sqErr1 / sqErr2)
+
 
 def estimate_coef(x, y): 
    
@@ -52,9 +62,11 @@ def main():
     ar = estimate_coef(x, y) 
     b = ar[0]
     m = ar[1]
+    line = [(m*x)+b for x in x]
+    r_square = coeff_of_det(y, line) 
 
     
-    print(b," ", m)
+    print(b," ", m, " ", r_square)
     
 
 
