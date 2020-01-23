@@ -3,7 +3,9 @@
  "version": "0.0.0",
  "private": true,
  "scripts": {
- "start": "nodemon ./bin/www"
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
  },
  "dependencies": {
  "cookie-parser": "~1.4.3",

@@ -5,33 +5,19 @@ This app grabs data points with a React frontend, processes it, and interprets i
 
 Project Status:
 - Frontend and backend now working, rough display of LinReg equation/trendline/coeff of determination
-- Need to properly format LinReg equation and r^2, add axis labels, integrate runtime in one command
+- Need to properly format LinReg equation and r^2, add axis labels, 
 -Add picture of project to this README
 
 
 Before running, get python, pip and node!
 
-To run working frontend (scatter plotter)...
-```
-Cd frontend
-npm install
-npm start
-Go to localhost:3000
-```
-To run working backend (sends LinReg data to frontend app)...
+ To run everything (eventually):
+ Go to the project directory, then
 ```
 pip install numpy
-Cd backend
+npm install -g concurrently
 npm install
-npm start
-```
-
-
- To run everything (eventually):
- Go to the backend, then... 
-```
-npm install
-npm run-script
+npm run dev
 Go to localhost:3000
 ```
 
