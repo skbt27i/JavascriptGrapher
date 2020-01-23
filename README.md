@@ -11,7 +11,7 @@ Project Status:
 
 Before running, get python, pip and node!
 
- To run everything (eventually):
+ To run:
  Go to the project directory, then
 ```
 pip install numpy
