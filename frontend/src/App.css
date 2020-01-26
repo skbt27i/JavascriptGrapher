@@ -1,10 +1,10 @@
-form
-{ 
-  box-sizing: border-box;
+.form
+{ box-sizing: border-box;
   display: flex;
   width: 20%;
-  padding: 20px 20px;
-  margin: 8px 0;
+  padding: 5px 5px;
+  margin: 5px 0;
+
 }
 .graph {
     width: 900px;
