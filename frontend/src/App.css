@@ -3,7 +3,13 @@
   display: flex;
   width: 20%;
   padding: 5px 5px;
-  margin: 5px 0;
+
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 5px;
+  margin: auto;
+  width: 50%;
+  
 
 }
 .graph {
