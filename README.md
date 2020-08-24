@@ -5,7 +5,7 @@ This app grabs data points with a React frontend, processes it, and interprets i
 
 Project Status:
 - Frontend and backend now working, rough display of LinReg equation/trendline/coeff of determination
-- Need to properly format LinReg equation and r^2, add axis labels
+- Need to properly format LinReg equation and r^2, add axis labels - TODO
 - Dynamically adjust number of points - TODO
 
 ![Alt text](lin.PNG?raw=true "Title")
