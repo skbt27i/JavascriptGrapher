@@ -7,7 +7,7 @@ Project Status:
 - Frontend and backend now working, rough display of LinReg equation/trendline/coeff of determination
 - Need to properly format LinReg equation and r^2, add axis labels
 
-![Alt text](lin.jpg?raw=true "Title")
+![Alt text](lin.PNG?raw=true "Title")
 
 Before running, get python, pip and node!
 
