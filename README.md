@@ -16,7 +16,7 @@ Before running, get python, pip and node!
 ```
 pip install numpy
 npm install -g concurrently
-npm install
+npm dual install
 npm run dev
 Go to localhost:3000
 ```
