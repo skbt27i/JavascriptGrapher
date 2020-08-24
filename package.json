@@ -3,18 +3,19 @@
  "version": "0.0.0",
  "private": true,
  "scripts": {
-    "backend": "cd backend && npm start",
-    "frontend": "cd frontend && npm start",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  "backend": "cd backend && npm start",
+  "frontend": "cd frontend && npm start",
+  "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+  "dual": "npm install && cd backend && npm install && cd .. && cd frontend && npm install"
  },
  "dependencies": {
- "cookie-parser": "~1.4.3",
- "debug": "~2.6.9",
- "ejs": "~2.5.7",
- "express": "~4.16.0",
- "http-errors": "~1.6.2",
- "morgan": "~1.9.0",
- "nodemon": "1.17.5"
+  "cookie-parser": "~1.4.3",
+  "debug": "~2.6.9",
+  "ejs": "~2.5.7",
+  "express": "~4.16.0",
+  "http-errors": "~1.6.2",
+  "morgan": "~1.9.0",
+  "nodemon": "1.17.5"
  },
  "main": "AppFile.js",
  "devDependencies": {},
