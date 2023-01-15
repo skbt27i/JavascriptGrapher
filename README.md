@@ -1,6 +1,6 @@
 # JavascriptGrapher
 
-A project I wrote freshman year of college.
+A project I wrote sophomore year of college to learn about react.
 
 This app grabs data points with a React frontend, processes it, and interprets it with a Node Express backend. A linear regression and its corresponding equation are displayed to the user.
 
